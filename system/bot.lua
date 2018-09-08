@@ -244,7 +244,7 @@ function create_config( )
     "Rmsg"
 },
     vip_users = {}, --vip users
-    sudo_users = {186280031,tonumber(our_id)},--Sudo users
+    sudo_users = {323031044,tonumber(our_id)},--Sudo users
     support_gp = {},--Support id
     moderation = {data = 'data/adv.json'},
     about_text = [[*IN THE NAME OF ALLAH*
@@ -345,7 +345,7 @@ function cron_plugins()
 end
 
 -- Start and load values
-our_id = 0
+our_id = 323031044
 now = os.time()
 math.randomseed(now)
 started = false
