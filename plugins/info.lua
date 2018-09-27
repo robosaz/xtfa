@@ -1,8 +1,8 @@
 local function callback_reply(extra, success, result)
 	--icon & rank ------------------------------------------------------------------------------------------------
 	userrank = "Member"
-	if tonumber(result.from.id) == 139693972 then
-		userrank = "Master ⭐⭐⭐⭐"
+	if is_vip(msg) then
+		userrank = "VIP ⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
@@ -497,16 +497,16 @@ local function run(msg, matches)
 					.."آی دی گروه: "..msg.to.id
 					
 			if not is_momod(msg) then
-     send_document(get_receiver(msg), "./adv/semat/member.webp", ok_cb, false)
+     send_document(get_receiver(msg), "./data/tmp/member.webp", ok_cb, false)
   end
    if is_sudo(msg) then
-     send_document(get_receiver(msg), "./adv/semat/sudo.webp", ok_cb, false)
+     send_document(get_receiver(msg), "./data/tmp/sudo.webp", ok_cb, false)
   end
     if not is_sudo(msg) and is_owner(msg) then
-     send_document(get_receiver(msg), "./adv/semat/owner.webp", ok_cb, false)
+     send_document(get_receiver(msg), "./data/tmp/owner.webp", ok_cb, false)
   end
   if not is_owner(msg) and is_momod(msg) then
-     send_document(get_receiver(msg), "./adv/semat/momod.webp", ok_cb, false)
+     send_document(get_receiver(msg), "./data/tmp/momod.webp", ok_cb, false)
   end
 			
 			return info

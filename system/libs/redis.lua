@@ -2,12 +2,9 @@ local Redis = (loadfile "./system/libs/lua-redis.lua")()
 local FakeRedis = (loadfile "./system/libs/fakeredis.lua")()
 
 local params = {
-  host = os.getenv('REDIS_HOST') or '127.0.0.1',
-  port = tonumber(os.getenv('REDIS_PORT') or 6379)
+  host = '127.0.0.1',
+  port = 6379,
 }
-
-local database = os.getenv('REDIS_DB')
-local password = os.getenv('REDIS_PASSWORD')
 
 -- Overwrite HGETALL
 Redis.commands.hgetall = Redis.command('hgetall', {
@@ -29,10 +26,11 @@ if not ok then
 
   local fake_func = function()
     print('\27[31mCan\'t connect with Redis, install/configure it!\27[39m')
+    print('\27[31mUse (quit) for fix this erore\27[39m')
+    io.popen('sudo service redis-server start redis-cli', ok_cb, ture)
   end
   fake_func()
   fake = FakeRedis.new()
-
   print('\27[31mRedis addr: '..params.host..'\27[39m')
   print('\27[31mRedis port: '..params.port..'\27[39m')
 
@@ -44,13 +42,6 @@ if not ok then
     return fake[b] or fake_func
   end })
 
-else
-  if password then
-    redis:auth(password)
-  end
-  if database then
-    redis:select(database)
-  end
 end
 
 

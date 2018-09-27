@@ -24,7 +24,7 @@ end
 local function run(msg, matches)
   if msg.to.type ~= 'chat' or is_sudo(msg) and is_realm(msg) then
 	 local data = load_data(_config.moderation.data)
-  if is_sudo(msg) then
+  if is_sudo(msg) or is_vip(msg) then
     if matches[1] == 'link' and data[tostring(matches[2])] then
         if is_banned(msg.from.id, matches[2]) then
 	    return 'You are in ban'

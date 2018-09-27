@@ -131,7 +131,7 @@ local function run(msg, matches)
     local target = matches[2]
     return all(msg,target,receiver)
   end
-  if not is_owner(msg) then
+  if not is_owner(msg) or not is_vip(msg) then
     return
   end
   if matches[1] == "all" and not matches[2] then
